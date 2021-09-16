@@ -15,7 +15,6 @@ namespace IW4DumpHelperGUI
     class IW4DumpHelper : App
     {
         private Menus.Menu MainMenu;
-        private Elems.InfoMsg Info;
 
 
         public IW4DumpHelper(string ResourceFolderName, string WindowTitle, uint WindowWidth, uint WindowHeight) : base(ResourceFolderName, WindowTitle, WindowWidth, WindowHeight)
@@ -52,9 +51,6 @@ namespace IW4DumpHelperGUI
 
             //Menu
             MainMenu = new Menus.Menu();
-
-            //Info Msg
-            Info = new Elems.InfoMsg();
 
 
 
