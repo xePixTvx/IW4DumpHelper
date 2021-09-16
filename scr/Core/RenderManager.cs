@@ -78,6 +78,14 @@ namespace IW4DumpHelperGUI.Core
                         clickElem.UpdateSelection();
                     }
 
+                    if(elem is IMoveableElem moveElem)
+                    {
+                        if (moveElem.IsMoving)
+                        {
+                            moveElem.UpdateMoveToPosition(App.GetFrameTime());
+                        }
+                    }
+
                     if (elem.IsVisible)
                     {
                         elem.Render();

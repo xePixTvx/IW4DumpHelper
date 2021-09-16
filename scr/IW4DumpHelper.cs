@@ -8,7 +8,7 @@ using SFML.System;
 using IW4DumpHelperGUI.Core;
 using IW4DumpHelperGUI.Core.Graphics;
 
-//LAST WORKED ON: InfoWindow Scrolling
+//LAST WORKED ON: MoveTo on RectElem
 
 namespace IW4DumpHelperGUI
 {
@@ -53,7 +53,8 @@ namespace IW4DumpHelperGUI
             MainMenu = new Menus.Menu();
 
 
-
+            new RectElem("testRect", Alignment.CENTER_CENTER, POS_CENTER_CENTER.X, POS_CENTER_CENTER.Y, 50, 50, new SFML.Graphics.Color(0, 0, 0, 255));
+            Renderer.GetElemByName("testRect").RenderLayer = 999;
 
 
             //Info Window Testing
@@ -91,6 +92,9 @@ namespace IW4DumpHelperGUI
             //TESTING
             if (e.Code == Keyboard.Key.T)
             {
+                RectElem relem = Renderer.GetElemByName("testRect") as RectElem;
+                Vector2f POS_CENTER_CENTER = ElemUtils.GetPositionOnScreen(Alignment.CENTER_CENTER);
+                relem.MoveTo(new Vector2f(POS_CENTER_CENTER.X + 200, POS_CENTER_CENTER.Y + 200), 0.1);
             }
         }
 
