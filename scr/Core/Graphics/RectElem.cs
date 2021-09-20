@@ -15,7 +15,7 @@ namespace IW4DumpHelperGUI.Core.Graphics
         private Alignment _Origin_Alignment;
         private Color _Color;
 
-        //Move
+        //MoveTo TESTING
         private bool _IsMoving = false;
         public double SpeedMulitplier { get; private set; } = 0.1;
         public MoveDirections DirectionX { get; private set; } = MoveDirections.MINUS;
@@ -117,7 +117,7 @@ namespace IW4DumpHelperGUI.Core.Graphics
 
 
 
-        //Move
+        //MoveTo TESTING
         public void MoveTo(Vector2f pos, double speed = 1)
         {
             if(!IsMoving)
@@ -194,7 +194,7 @@ namespace IW4DumpHelperGUI.Core.Graphics
             if(tmp_x_done && tmp_y_done)
             {
                 IsMoving = false;
-                Console.WriteLine("MoveTo Done");///////REMOVE ME!!!!
+                //Console.WriteLine("MoveTo Done");///////REMOVE ME!!!!
             }
 
         }
