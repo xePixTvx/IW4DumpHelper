@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.System;
 using IW4DumpHelperGUI.Core.Graphics;
@@ -52,9 +51,20 @@ namespace IW4DumpHelperGUI.Menus
             //Load Main Menu
             ChangeMenu("main");
 
-            IW4DumpHelper.Log.Print("Menu Loaded!");
+
+            //Lock Some Options
+            GetMenuButtonByName("mainMenu_Button_Vehicles", "main").Lock();
+            GetMenuButtonByName("mainMenu_Button_Scripts", "main").Lock();
+            GetMenuButtonByName("mainMenu_Button_Settings", "main").Lock();
+
+            GetMenuButtonByName("WeaponsMainMenu_Button_ConvertAllToGsc", "weps_main").Lock();
+            GetMenuButtonByName("WeaponsMainMenu_Button_ConvertMapsToGsc", "weps_main").Lock();
+            GetMenuButtonByName("WeaponsMainMenu_Button_ConvertAllToInfo", "weps_main").Lock();
+
+            IW4DumpHelper.Log.Print("Menus Loaded!");
         }
 
+        //Change/Update Current Menu Title
         private void ChangeMenuTitle(string title)
         {
             //Update Text
@@ -67,6 +77,35 @@ namespace IW4DumpHelperGUI.Menus
         }
 
 
+        //Get Menu Buttons by Name and/or Menu
+        public MenuButton GetMenuButtonByName(string name)
+        {
+            foreach(MenuButton button in Buttons)
+            {
+                if(button.ButtonName == name)
+                {
+                    return button;
+                }
+            }
+            return null;
+        }
+        public MenuButton GetMenuButtonByName(string name, string menuName)
+        {
+            foreach (MenuButton button in Buttons)
+            {
+                if(button.MenuName == menuName)
+                {
+                    if (button.ButtonName == name)
+                    {
+                        return button;
+                    }
+                }
+            }
+            return null;
+        }
+
+
+        //Change Current Menu
         private void ChangeMenu(string menu)
         {
             CurrentMenu = menu;
@@ -100,6 +139,14 @@ namespace IW4DumpHelperGUI.Menus
         private void ExitApp()
         {
             IW4DumpHelper.Exit();
+        }
+
+        //Some Test function
+        private void TestMenuAction()
+        {
+            /*GetMenuButtonByName("WeaponsMainMenu_Button_ConvertAllToGsc", "weps_main").Unlock();
+            GetMenuButtonByName("WeaponsMainMenu_Button_ConvertMapsToGsc", "weps_main").Unlock();
+            GetMenuButtonByName("WeaponsMainMenu_Button_ConvertAllToInfo", "weps_main").Unlock();*/
         }
 
 

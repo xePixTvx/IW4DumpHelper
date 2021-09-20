@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Text;
-using SFML.Window;
+﻿using SFML.Window;
 using SFML.System;
 
 using IW4DumpHelperGUI.Core;
@@ -36,9 +32,6 @@ namespace IW4DumpHelperGUI
 
             //Get Positions in window
             Vector2f POS_CENTER_CENTER = ElemUtils.GetPositionOnScreen(Alignment.CENTER_CENTER);
-            Vector2f POS_LEFT_CENTER = ElemUtils.GetPositionOnScreen(Alignment.LEFT_CENTER);
-            Vector2f POS_LEFT_TOP = ElemUtils.GetPositionOnScreen(Alignment.LEFT_TOP);
-            Vector2f POS_RIGHT_TOP = ElemUtils.GetPositionOnScreen(Alignment.RIGHT_TOP);
 
 
             //Main BG
@@ -51,22 +44,6 @@ namespace IW4DumpHelperGUI
 
             //Menu
             MainMenu = new Menus.Menu();
-
-
-            /*new RectElem("testRect", Alignment.CENTER_CENTER, POS_CENTER_CENTER.X, POS_CENTER_CENTER.Y, 50, 50, new SFML.Graphics.Color(0, 0, 0, 255));
-            Renderer.GetElemByName("testRect").RenderLayer = 999;*/
-
-
-            //Info Window Testing
-            /*new Elems.InfoWindow("TestInfoWindow", POS_RIGHT_TOP.X - 50, POS_RIGHT_TOP.Y + 30, "Test Info Window YAY");
-            Elems.InfoWindow TestInfoWindow = Renderer.GetElemByName("TestInfoWindow") as Elems.InfoWindow;
-            TestInfoWindow.RenderLayer = 2;
-            //TestInfoWindow.IsActive = false;
-            for (int i = 0; i < 20; i++)
-            {
-                TestInfoWindow.AddLine("Test Line " + i);
-            }
-            */
         }
 
 

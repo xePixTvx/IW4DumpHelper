@@ -14,6 +14,8 @@ namespace IW4DumpHelperGUI.Menus
         private Alignment _Origin_Alignment;
         private Color _Color;
 
+        private bool _IsLocked;
+
         public Vector2f Size
         {
             get { return _Size; }
@@ -54,6 +56,15 @@ namespace IW4DumpHelperGUI.Menus
             }
         }
 
+        public bool IsLocked
+        {
+            get { return _IsLocked; }
+            set
+            {
+                _IsLocked = value;
+            }
+        }
+
 
         public MenuButtonRect(string _Name, Alignment Origin_Align, float Pos_X, float Pos_Y, float Width, float Height, Color RGBA, Action action = null)
         {
@@ -64,6 +75,8 @@ namespace IW4DumpHelperGUI.Menus
             Position = new Vector2f(Pos_X, Pos_Y);
             Color = RGBA;
             Action = action;
+
+            IsLocked = false;
 
             IW4DumpHelper.Renderer.AddToList(this);
         }
@@ -89,15 +102,22 @@ namespace IW4DumpHelperGUI.Menus
 
         public override void UpdateSelection()
         {
-            IsSelected = (ElemUtils.IsHovered(Shape) == true) ? true : false;
-
-            if (IsSelected)
+            if (!IsLocked)
             {
-                Shape.FillColor = new Color(Color.R, Color.G, Color.B, 180);
+                IsSelected = (ElemUtils.IsHovered(Shape) == true) ? true : false;
+
+                if (IsSelected)
+                {
+                    Shape.FillColor = new Color(Color.R, Color.G, Color.B, 180);
+                }
+                else
+                {
+                    Shape.FillColor = new Color(Color.R, Color.G, Color.B, 130);
+                }
             }
             else
             {
-                Shape.FillColor = new Color(Color.R, Color.G, Color.B, 130);
+                IsSelected = false;
             }
         }
 

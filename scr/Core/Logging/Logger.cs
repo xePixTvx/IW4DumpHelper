@@ -102,7 +102,7 @@ namespace IW4DumpHelperGUI.Core.Logging
         {
             if (File.Exists(file))
             {
-                if (GetFileSize(file) >= 800000)//800kb
+                if (GetFileSize(file) >= 200000)//200kb
                 {
                     if (BackupFullLogs)
                     {

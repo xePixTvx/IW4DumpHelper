@@ -3,8 +3,6 @@ using SFML.System;
 using IW4DumpHelperGUI.Core.Graphics.Bases;
 using IW4DumpHelperGUI.Core.Graphics.Interfaces;
 
-using System;
-
 namespace IW4DumpHelperGUI.Core.Graphics
 {
     public class RectElem : RenderableElemBase, IMoveableElem

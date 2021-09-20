@@ -13,10 +13,12 @@ namespace IW4DumpHelperGUI.Menus
         public int Renderlayer { private set; get; }
 
         public string MenuName { private set; get; }
+        public string ButtonName { private set; get; }
 
         public MenuButton(string name, string menuName, int index, string text, Action action = null)
         {
             MenuName = menuName;
+            ButtonName = name;
             int renderLayer = 2;
 
             //Position Stuff
@@ -27,8 +29,8 @@ namespace IW4DumpHelperGUI.Menus
             float Height = 30;
 
             //Create Button Rect + Text
-            ButtonRect = new MenuButtonRect(name + "_rect", Origin_Align, POS_LEFT_CENTER.X, (POS_LEFT_TOP.Y + 100) + (40 * index), Width, Height, new Color(0, 0, 0, 130), action);
-            ButtonText = new TextElem(name + "_text", Alignment.RIGHT_CENTER, POS_LEFT_CENTER.X, (POS_LEFT_TOP.Y + 100) + (40 * index), new Color(255, 255, 255, 255), "capture", 18, Text.Styles.Regular, text);
+            ButtonRect = new MenuButtonRect(ButtonName + "_rect", Origin_Align, POS_LEFT_CENTER.X, (POS_LEFT_TOP.Y + 100) + (40 * index), Width, Height, new Color(0, 0, 0, 130), action);
+            ButtonText = new TextElem(ButtonName + "_text", Alignment.RIGHT_CENTER, POS_LEFT_CENTER.X, (POS_LEFT_TOP.Y + 100) + (40 * index), new Color(255, 255, 255, 255), "capture", 18, Text.Styles.Regular, text);
 
             //Align Button Text
             ButtonText.Position = new Vector2f((POS_LEFT_CENTER.X + ButtonRect.Size.X) - 10, (POS_LEFT_TOP.Y + 100) + (40 * index) - 3);
@@ -53,6 +55,18 @@ namespace IW4DumpHelperGUI.Menus
         {
             ButtonRect.IsActive = true;
             ButtonText.IsActive = true;
+        }
+
+        public void Lock()
+        {
+            ButtonRect.IsLocked = true;
+            ButtonText.Color = new Color(255, 255, 255, 150);
+        }
+
+        public void Unlock()
+        {
+            ButtonRect.IsLocked = false;
+            ButtonText.Color = new Color(255, 255, 255, 255);
         }
 
         public void Destroy()
