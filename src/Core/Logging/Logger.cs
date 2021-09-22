@@ -126,5 +126,15 @@ namespace IW4DumpHelperGUI.Core.Logging
             FileInfo file = new FileInfo(filename);
             return file.Length;
         }
+
+        public void ClearLogFiles()
+        {
+            string[] files = Directory.GetFiles(LogFileBackupDirectory);
+            foreach(string f in files)
+            {
+                File.Delete(f);
+            }
+            Print("Log Files Cleared!", LogTypes.INFO);
+        }
     }
 }

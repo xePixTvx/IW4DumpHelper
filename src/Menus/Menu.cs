@@ -30,17 +30,17 @@ namespace IW4DumpHelperGUI.Menus
 
 
 
-            //Main Menu
+            //Create Main Menu
             MenuTitles.Add("main", "IW4DUMPHELPER BY P!X");
             Buttons.Add(new MenuButton("mainMenu_Button_Weapons", "main", 0, "Weapons", LoadMenu_Weapons));
             Buttons.Add(new MenuButton("mainMenu_Button_Vehicles", "main", 1, "Vehicles"));
             Buttons.Add(new MenuButton("mainMenu_Button_Scripts", "main", 2, "Scripts"));
-            Buttons.Add(new MenuButton("mainMenu_Button_Settings", "main", 3, "Settings"));
+            Buttons.Add(new MenuButton("mainMenu_Button_Settings", "main", 3, "Settings", LoadMenu_Settings));
             Buttons.Add(new MenuButton("mainMenu_Button_Exit", "main", 4, "Exit", ExitApp));
 
 
 
-            //Sub Menu
+            //Create Weapons Main Menu
             MenuTitles.Add("weps_main", "Weapons");
             Buttons.Add(new MenuButton("WeaponsMainMenu_Button_ScanWeapons", "weps_main", 0, "Scan Weapons"));
             Buttons.Add(new MenuButton("WeaponsMainMenu_Button_ConvertAllToGsc", "weps_main", 1, "Convert Weapons to GSC[ALL]"));
@@ -48,18 +48,33 @@ namespace IW4DumpHelperGUI.Menus
             Buttons.Add(new MenuButton("WeaponsMainMenu_Button_ConvertAllToInfo", "weps_main", 3, "Convert Weapons to Info[ALL]"));
             Buttons.Add(new MenuButton("WeaponsMainMenu_Button_Back", "weps_main", 4, "BACK", LoadMenuMain));
 
-            //Load Main Menu
-            ChangeMenu("main");
+
+            //Create Settings Menu
+            MenuTitles.Add("settings_main", "Settings");
+            Buttons.Add(new MenuButton("SettingsMainMenu_Button_ClearLogBackups", "settings_main", 0, "Clear LOG Backups", IW4DumpHelper.Log.ClearLogFiles));
+            Buttons.Add(new MenuButton("SettingsMainMenu_Button_Back", "settings_main", 1, "BACK", LoadMenuMain));
+
+
 
 
             //Lock Some Options
             GetMenuButtonByName("mainMenu_Button_Vehicles", "main").Lock();
             GetMenuButtonByName("mainMenu_Button_Scripts", "main").Lock();
-            GetMenuButtonByName("mainMenu_Button_Settings", "main").Lock();
 
             GetMenuButtonByName("WeaponsMainMenu_Button_ConvertAllToGsc", "weps_main").Lock();
             GetMenuButtonByName("WeaponsMainMenu_Button_ConvertMapsToGsc", "weps_main").Lock();
             GetMenuButtonByName("WeaponsMainMenu_Button_ConvertAllToInfo", "weps_main").Lock();
+
+            //Test Progress Stuff
+            MenuButton tmp_testButton = GetMenuButtonByName("mainMenu_Button_Weapons", "main");
+            tmp_testButton.ProgressbarShow();
+            tmp_testButton.ChangeProgress(50);
+
+
+
+
+            //Load Main Menu
+            ChangeMenu("main");
 
             IW4DumpHelper.Log.Print("Menus Loaded!");
         }
@@ -158,6 +173,10 @@ namespace IW4DumpHelperGUI.Menus
         private void LoadMenu_Weapons()
         {
             ChangeMenu("weps_main");
+        }
+        private void LoadMenu_Settings()
+        {
+            ChangeMenu("settings_main");
         }
 
     }
