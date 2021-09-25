@@ -4,13 +4,16 @@ using SFML.System;
 using IW4DumpHelperGUI.Core;
 using IW4DumpHelperGUI.Core.Graphics;
 
-//LAST WORKED ON:
+//LAST WORKED ON: Info
 
 namespace IW4DumpHelperGUI
 {
     class IW4DumpHelper : App
     {
         private Menus.Menu MainMenu;
+
+        //Testing
+        private Info.InfoWindow Info;
 
 
         public IW4DumpHelper(string ResourceFolderName, string WindowTitle, uint WindowWidth, uint WindowHeight) : base(ResourceFolderName, WindowTitle, WindowWidth, WindowHeight)
@@ -44,6 +47,10 @@ namespace IW4DumpHelperGUI
 
             //Menu
             MainMenu = new Menus.Menu();
+
+
+            //Testing
+            Info = new Info.InfoWindow();
         }
 
 
