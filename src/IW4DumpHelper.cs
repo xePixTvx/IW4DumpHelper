@@ -6,14 +6,20 @@ using IW4DumpHelperGUI.Core.Graphics;
 
 //LAST WORKED ON: Info
 
+
+
+//Logger Needs Fixing: Creating Backup crashes tool
+
 namespace IW4DumpHelperGUI
 {
     class IW4DumpHelper : App
     {
         private Menus.Menu MainMenu;
 
+
         //Testing
-        private Info.InfoWindow Info;
+        private Info.InfoWindowTest TestInfoWindow;
+
 
 
         public IW4DumpHelper(string ResourceFolderName, string WindowTitle, uint WindowWidth, uint WindowHeight) : base(ResourceFolderName, WindowTitle, WindowWidth, WindowHeight)
@@ -49,8 +55,8 @@ namespace IW4DumpHelperGUI
             MainMenu = new Menus.Menu();
 
 
-            //Testing
-            Info = new Info.InfoWindow();
+            //Test InfoWindow
+            TestInfoWindow = new Info.InfoWindowTest();
         }
 
 

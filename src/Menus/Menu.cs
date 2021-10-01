@@ -66,7 +66,7 @@ namespace IW4DumpHelperGUI.Menus
             GetMenuButtonByName("WeaponsMainMenu_Button_ConvertAllToInfo", "weps_main").Lock();
 
             //Test Progress Stuff
-            MenuButton tmp_testButton = GetMenuButtonByName("mainMenu_Button_Weapons", "main");
+            MenuButton tmp_testButton = GetMenuButtonByName("WeaponsMainMenu_Button_ScanWeapons", "weps_main");
             tmp_testButton.ProgressbarShow();
             tmp_testButton.ChangeProgress(50);
 
