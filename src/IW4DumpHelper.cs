@@ -52,7 +52,7 @@ namespace IW4DumpHelperGUI
 
 
             //Test InfoWindow
-            TestInfoWindow = new Info.InfoWindowTest();
+            TestInfoWindow = new Info.InfoWindowTest("TestInfoWindow", "TEST");
         }
 
 
