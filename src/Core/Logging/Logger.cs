@@ -46,7 +46,12 @@ namespace IW4DumpHelperGUI.Core.Logging
         public void Print(string MSG, LogTypes Type = LogTypes.INFO)
         {
             DateTime dateTime = DateTime.Now;
-            if (MSG != "LOGFUNC__EMPTY__LOGFUNC")
+            if (MSG == "LOGFUNC__EMPTY__LOGFUNC")
+            {
+                LogWriter.WriteLine("");
+                LogWriter.Flush();
+            }
+            else
             {
                 if (Type == LogTypes.INFO)
                 {
@@ -89,11 +94,6 @@ namespace IW4DumpHelperGUI.Core.Logging
                     LogWriter.Flush();
                 }
             }
-            else
-            {
-                LogWriter.WriteLine("");
-                LogWriter.Flush();
-            }
         }
 
         //Check if backup is needed
@@ -108,8 +108,8 @@ namespace IW4DumpHelperGUI.Core.Logging
                     {
                         DateTime dateTime = DateTime.Now;
                         int directorySize = Directory.GetFiles(backUpDir).Length;
-                        string backUpStartName = "LOG_BACKUP_" + directorySize + "[" + dateTime + "]";
-                        File.Copy(file, Path.Combine(backUpDir, backUpStartName + ".txt"));
+                        string backUpStartName = "LOG_BACKUP_" + directorySize + "[" + dateTime.Day + "-" + dateTime.Month + "-" + dateTime.Year + "]";
+                        File.Copy(file, Path.Combine(backUpDir, backUpStartName + ".log"));
                     }
                     File.Delete(file);
                     if (ShowInConsole)
@@ -127,6 +127,7 @@ namespace IW4DumpHelperGUI.Core.Logging
             return file.Length;
         }
 
+        //Menu Function
         public void ClearLogFiles()
         {
             string[] files = Directory.GetFiles(LogFileBackupDirectory);

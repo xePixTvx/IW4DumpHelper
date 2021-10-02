@@ -6,10 +6,6 @@ using IW4DumpHelperGUI.Core.Graphics;
 
 //LAST WORKED ON: Info
 
-
-
-//Logger Needs Fixing: Creating Backup crashes tool
-
 namespace IW4DumpHelperGUI
 {
     class IW4DumpHelper : App
