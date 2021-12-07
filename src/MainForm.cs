@@ -7,7 +7,8 @@ using IW4DumpHelperWinForms.DEV;
 using IW4DumpHelperWinForms.Info;
 
 
-//LAST WORKED ON: DO DB STUFF ASYNC????
+//LAST WORKED ON: DEV DB Stuff(Add Strings Tables)
+
 
 namespace IW4DumpHelperWinForms
 {
@@ -116,12 +117,6 @@ namespace IW4DumpHelperWinForms
                 dataGridView_DB_Tables.Rows.Add(name, DB_DEV.DEV_GetTableItemCount(name));
             }
 
-
-
-
-
-
-
             CMD.Println("Database Info Loaded!");
         }
 
@@ -168,6 +163,21 @@ namespace IW4DumpHelperWinForms
 
         private void button_DB_Test_Click(object sender, EventArgs e)
         {
+            tabControl_Main.SelectedTab = tabPage_Console;
+
+            /*StringFileScanner TestScanner = new StringFileScanner(CMD);
+
+            List<DevStringInfo> strinfos_english_sp = TestScanner.ScanStringFile(LANGUAGES.english, "SP");
+
+            List<DevStringInfo> strinfos_english = TestScanner.ScanStringFile(LANGUAGES.english, "MP");
+            List<DevStringInfo> strinfos_french = TestScanner.ScanStringFile(LANGUAGES.french, "MP");
+            List<DevStringInfo> strinfos_german = TestScanner.ScanStringFile(LANGUAGES.german, "MP");
+            List<DevStringInfo> strinfos_italian = TestScanner.ScanStringFile(LANGUAGES.italian, "MP");
+            List<DevStringInfo> strinfos_polish = TestScanner.ScanStringFile(LANGUAGES.polish, "MP");
+            List<DevStringInfo> strinfos_russian = TestScanner.ScanStringFile(LANGUAGES.russian, "MP");
+            List<DevStringInfo> strinfos_spanish = TestScanner.ScanStringFile(LANGUAGES.spanish, "MP");*/
+
+            DB_DEV.DEV_AddStringTables();
         }
 
         #endregion Database Tab Forms

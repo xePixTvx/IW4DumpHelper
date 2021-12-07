@@ -292,5 +292,39 @@ namespace IW4DumpHelperWinForms.DEV
 
 
 
+        //Add Strings Tables
+        public void DEV_AddStringTables()
+        {
+            //Open Database connection
+            DB.OpenConnection();
+
+            //Create Database Command
+            var DB_CMD = DB.GetCurrentConnection().CreateCommand();
+
+            //Remove strings table if it already exists
+            DB_CMD.CommandText = "DROP TABLE IF EXISTS strings_test";
+            DB_CMD.ExecuteNonQuery();
+
+            //Add strings table
+            DB_CMD.CommandText = "CREATE TABLE strings_test" +
+            "(\"REFERENCE\"         TEXT    DEFAULT 'UNKNOWN_REFERENCE'," +
+            "\"LANG_ENGLISH\"       TEXT    DEFAULT 'UNKNOWN_STRING'," +
+            "\"LANG_FRENCH\"        TEXT    DEFAULT 'UNKNOWN_STRING'," +
+            "\"LANG_GERMAN\"        TEXT    DEFAULT 'UNKNOWN_STRING'," +
+            "\"LANG_ITALIAN\"       TEXT    DEFAULT 'UNKNOWN_STRING'," +
+            "\"LANG_POLISH\"        TEXT    DEFAULT 'UNKNOWN_STRING'," +
+            "\"LANG_RUSSIAN\"       TEXT    DEFAULT 'UNKNOWN_STRING'," +
+            "\"LANG_SPANISH\"       TEXT    DEFAULT 'UNKNOWN_STRING')";
+            DB_CMD.ExecuteNonQuery();
+
+            //Close Database connection
+            DB.CloseConnection();
+
+
+
+            CSL.Println("TEST DONE!");
+        }
+
+
     }
 }

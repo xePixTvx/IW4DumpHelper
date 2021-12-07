@@ -59,6 +59,7 @@ namespace IW4DumpHelperWinForms
             this.dataGridView_DB_Tables = new System.Windows.Forms.DataGridView();
             this.table_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.table_itemCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tabControl_Main.SuspendLayout();
             this.tabPage_Database.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -83,6 +84,7 @@ namespace IW4DumpHelperWinForms
             // 
             // tabPage_Database
             // 
+            this.tabPage_Database.Controls.Add(this.groupBox4);
             this.tabPage_Database.Controls.Add(this.button_DB_Clear);
             this.tabPage_Database.Controls.Add(this.button_DB_Test);
             this.tabPage_Database.Controls.Add(this.groupBox2);
@@ -106,7 +108,7 @@ namespace IW4DumpHelperWinForms
             // 
             // button_DB_Test
             // 
-            this.button_DB_Test.Location = new System.Drawing.Point(258, 340);
+            this.button_DB_Test.Location = new System.Drawing.Point(851, 486);
             this.button_DB_Test.Name = "button_DB_Test";
             this.button_DB_Test.Size = new System.Drawing.Size(257, 109);
             this.button_DB_Test.TabIndex = 6;
@@ -118,13 +120,13 @@ namespace IW4DumpHelperWinForms
             // 
             this.groupBox2.Controls.Add(this.button_DB_AddWeaponMapTables);
             this.groupBox2.Controls.Add(this.button_DB_AddMaps);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(3, 325);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(249, 124);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "1:";
+            this.groupBox2.Text = "Maps + Weapons:";
             // 
             // button_DB_AddWeaponMapTables
             // 
@@ -379,6 +381,16 @@ namespace IW4DumpHelperWinForms
             this.table_itemCount.Name = "table_itemCount";
             this.table_itemCount.ReadOnly = true;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(258, 325);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(249, 124);
+            this.groupBox4.TabIndex = 8;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Strings:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -435,6 +447,7 @@ namespace IW4DumpHelperWinForms
         private System.Windows.Forms.DataGridView dataGridView_DB_Tables;
         private System.Windows.Forms.DataGridViewTextBoxColumn table_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn table_itemCount;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }
 

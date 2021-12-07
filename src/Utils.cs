@@ -35,7 +35,7 @@ namespace IW4DumpHelperWinForms
 
 
         //Check if string already exists in a list
-        private static bool IsDuplicate(List<string> list, string text)
+        public static bool IsDuplicate(List<string> list, string text)
         {
             foreach (string str in list)
             {
@@ -46,7 +46,18 @@ namespace IW4DumpHelperWinForms
             }
             return false;
         }
-    
-    
+
+        //Remove Strings from a string object
+        public static string RemoveFromString(string str, string[] n)
+        {
+            string line = str;
+            for (int i = 0; i < n.Length; i++)
+            {
+                line = line.Replace(n[i], "");
+            }
+            return line;
+        }
+
+
     }
 }

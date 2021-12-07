@@ -70,6 +70,9 @@
     <Compile Include="ConsoleController.cs" />
     <Compile Include="DatabaseController.cs" />
     <Compile Include="DEV\DatabaseStuff.cs" />
+    <Compile Include="DEV\DevStringInfo.cs" />
+    <Compile Include="DEV\LANGUAGES.cs" />
+    <Compile Include="DEV\StringFileScanner.cs" />
     <Compile Include="DEV\WeaponFileScanner.cs" />
     <Compile Include="DEV\DevWeaponInfo.cs" />
     <Compile Include="Info\MapInfo.cs" />
