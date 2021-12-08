@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace IW4DumpHelperWinForms.DEV
 {
@@ -14,6 +15,35 @@ namespace IW4DumpHelperWinForms.DEV
             CMD = cmd;
             DEV_MSGS = show_dev_msgs;
         }
+
+        public void ScanStringFilesAndCombineLangs(string type = "MP")////////////////////////////LAST WORKED ON!
+        {
+            //List<DevCombinedStringInfo> CombinedInfoStrings = new List<DevCombinedStringInfo>();
+
+
+            //List of all supported languages
+            List<LANGUAGES> Languages = Enum.GetValues(typeof(LANGUAGES)).Cast<LANGUAGES>().ToList();
+
+            //Dictionary of all StringInfos for all languages
+            Dictionary<LANGUAGES, List<DevStringInfo>> StringInfos = new Dictionary<LANGUAGES, List<DevStringInfo>>();
+
+            //Scan String Files
+            foreach(LANGUAGES lang in Languages)
+            {
+                StringInfos.Add(lang, ScanStringFile(lang, (type != "MP" ? "SP" : "MP")));
+            }
+
+            //Loop through StringInfos Dictionary
+            foreach(KeyValuePair<LANGUAGES,List<DevStringInfo>> Infos in StringInfos)
+            {
+                LANGUAGES CurrentLanguage = Infos.Key;
+                List<DevStringInfo> CurrentStrings = Infos.Value;
+
+                Console.WriteLine("Lang: " + CurrentLanguage.ToString() + " ----- " + CurrentStrings.Count);
+            }
+        }
+
+
 
         public List<DevStringInfo> ScanStringFile(LANGUAGES lang, string type = "MP")
         {

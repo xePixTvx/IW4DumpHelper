@@ -7,7 +7,7 @@ using IW4DumpHelperWinForms.DEV;
 using IW4DumpHelperWinForms.Info;
 
 
-//LAST WORKED ON: DEV DB Stuff(Add Strings Tables)
+//LAST WORKED ON: StringFileScanner --- ScanStringFilesAndCombineLangs(string type = "MP")
 
 
 namespace IW4DumpHelperWinForms
@@ -165,9 +165,14 @@ namespace IW4DumpHelperWinForms
         {
             tabControl_Main.SelectedTab = tabPage_Console;
 
-            /*StringFileScanner TestScanner = new StringFileScanner(CMD);
+            StringFileScanner TestScanner = new StringFileScanner(CMD);
 
-            List<DevStringInfo> strinfos_english_sp = TestScanner.ScanStringFile(LANGUAGES.english, "SP");
+            TestScanner.ScanStringFilesAndCombineLangs("MP");
+
+
+
+            //Scan TESTING
+            /*List<DevStringInfo> strinfos_english_sp = TestScanner.ScanStringFile(LANGUAGES.english, "SP");
 
             List<DevStringInfo> strinfos_english = TestScanner.ScanStringFile(LANGUAGES.english, "MP");
             List<DevStringInfo> strinfos_french = TestScanner.ScanStringFile(LANGUAGES.french, "MP");
@@ -177,7 +182,8 @@ namespace IW4DumpHelperWinForms
             List<DevStringInfo> strinfos_russian = TestScanner.ScanStringFile(LANGUAGES.russian, "MP");
             List<DevStringInfo> strinfos_spanish = TestScanner.ScanStringFile(LANGUAGES.spanish, "MP");*/
 
-            DB_DEV.DEV_AddStringTables();
+            //DB TESTING
+            //DB_DEV.DEV_AddStringTables();
         }
 
         #endregion Database Tab Forms
