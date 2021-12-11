@@ -7,7 +7,7 @@ using IW4DumpHelperWinForms.DEV;
 using IW4DumpHelperWinForms.Info;
 
 
-//LAST WORKED ON: StringFileScanner --- ScanStringFilesAndCombineLangs(string type = "MP")
+//LAST WORKED ON: DEV_AddStringTables(bool show_console_msgs = true) --- Adding StringInfos to Database
 
 
 namespace IW4DumpHelperWinForms
@@ -128,7 +128,6 @@ namespace IW4DumpHelperWinForms
                 return;
             }
             tabControl_Main.SelectedTab = tabPage_Console;
-            CMD.Println("DEV: Clearing Database!");
             DB_DEV.DEV_ClearDataBase();
             MessageBox.Show("Database Cleared!", "DEV INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -142,7 +141,6 @@ namespace IW4DumpHelperWinForms
                 return;
             }
             tabControl_Main.SelectedTab = tabPage_Console;
-            CMD.Println("DEV: Updating Maps Table!");
             DB_DEV.DEV_AddMapsToMapsTable();
             MessageBox.Show("Maps Table Updated!", "DEV INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -156,7 +154,6 @@ namespace IW4DumpHelperWinForms
                 return;
             }
             tabControl_Main.SelectedTab = tabPage_Console;
-            CMD.Println("DEV: Updating Weapon Tables!");
             DB_DEV.DEV_AddWeaponsToDB();
             MessageBox.Show("Weapon Tables Updated!", "DEV INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -165,9 +162,9 @@ namespace IW4DumpHelperWinForms
         {
             tabControl_Main.SelectedTab = tabPage_Console;
 
-            StringFileScanner TestScanner = new StringFileScanner(CMD);
+            //StringFileScanner TestScanner = new StringFileScanner(CMD);
 
-            TestScanner.ScanStringFilesAndCombineLangs("MP");
+            //TestScanner.ScanStringFilesAndCombineLangs("MP");
 
 
 
@@ -183,7 +180,7 @@ namespace IW4DumpHelperWinForms
             List<DevStringInfo> strinfos_spanish = TestScanner.ScanStringFile(LANGUAGES.spanish, "MP");*/
 
             //DB TESTING
-            //DB_DEV.DEV_AddStringTables();
+            DB_DEV.DEV_AddStringTables();
         }
 
         #endregion Database Tab Forms

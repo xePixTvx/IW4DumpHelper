@@ -33,20 +33,6 @@ namespace IW4DumpHelperWinForms
             return Lines;
         }
 
-
-        //Check if string already exists in a list
-        public static bool IsDuplicate(List<string> list, string text)
-        {
-            foreach (string str in list)
-            {
-                if (str == text)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         //Remove Strings from a string object
         public static string RemoveFromString(string str, string[] n)
         {

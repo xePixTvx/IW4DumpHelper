@@ -16,9 +16,10 @@ namespace IW4DumpHelperWinForms.DEV
             DEV_MSGS = show_dev_msgs;
         }
 
-        public void ScanStringFilesAndCombineLangs(string type = "MP")////////////////////////////LAST WORKED ON!
+        public List<DevCombinedStringInfo> ScanStringFilesAndCombineLangs(string type = "MP")
         {
-            //List<DevCombinedStringInfo> CombinedInfoStrings = new List<DevCombinedStringInfo>();
+            //List with all CombinedInfoStrings
+            List<DevCombinedStringInfo> CombinedInfoStrings = new List<DevCombinedStringInfo>();
 
 
             //List of all supported languages
@@ -30,21 +31,71 @@ namespace IW4DumpHelperWinForms.DEV
             //Scan String Files
             foreach(LANGUAGES lang in Languages)
             {
-                StringInfos.Add(lang, ScanStringFile(lang, (type != "MP" ? "SP" : "MP")));
+                List<DevStringInfo> tmp_info_list = ScanStringFile(lang, (type != "MP" ? "SP" : "MP"));
+                if (tmp_info_list != null)
+                {
+                    StringInfos.Add(lang, tmp_info_list);
+                }
             }
+
+            CMD.Println("");
+            CMD.Println("");
+            CMD.Println("---------------------- COMBINING STRING LANGUAGES ----------------------");
+
+            int AddedReferenceCount = 0;
+            int AddedLangStringCount = 0;
 
             //Loop through StringInfos Dictionary
-            foreach(KeyValuePair<LANGUAGES,List<DevStringInfo>> Infos in StringInfos)
+            foreach (KeyValuePair<LANGUAGES,List<DevStringInfo>> Infos in StringInfos)
             {
+                //Current Language
                 LANGUAGES CurrentLanguage = Infos.Key;
+
+                //Current List of Scanned Strings
                 List<DevStringInfo> CurrentStrings = Infos.Value;
 
-                Console.WriteLine("Lang: " + CurrentLanguage.ToString() + " ----- " + CurrentStrings.Count);
+                //Loop through Current List
+                foreach(DevStringInfo DevInfo in CurrentStrings)
+                {
+                    string CurrentReference = DevInfo.Reference;
+                    string CurrentLangString = DevInfo.Lang_String;
+
+                    //Check if Reference already exists
+                    if(CombinedInfoStrings.Any(refer => refer.Reference == CurrentReference))
+                    {
+                        CombinedInfoStrings.Find(refer => refer.Reference == CurrentReference).SetLangString(CurrentLanguage, CurrentLangString);
+                        if (DEV_MSGS)
+                        {
+                            CMD.Println("Added string for Reference: " + CurrentReference + " in Language: " + CurrentLanguage);
+                        }
+                        AddedLangStringCount++;
+                    }
+                    else
+                    {
+                        DevCombinedStringInfo tmp_infoString = new DevCombinedStringInfo();
+                        tmp_infoString.SetReference(CurrentReference);
+                        tmp_infoString.SetLangString(CurrentLanguage, CurrentLangString);
+                        CombinedInfoStrings.Add(tmp_infoString);
+                        if (DEV_MSGS)
+                        {
+                            CMD.Println("Created StringInfo with Reference: " + CurrentReference);
+                            CMD.Println("Added string for Reference: " + CurrentReference + " in Language: " + CurrentLanguage);
+                        }
+                        AddedReferenceCount++;
+                        AddedLangStringCount++;
+                    }
+                }
             }
+
+            CMD.Println("References: " + AddedReferenceCount);
+            CMD.Println("Language Strings: " + AddedLangStringCount);
+            CMD.Println("DONE!");
+            CMD.Println("------------------------------------------------------------------------");
+            return CombinedInfoStrings;
         }
 
 
-
+        //Reads a string file and returns a list with DevStringInfos(language, reference, string)
         public List<DevStringInfo> ScanStringFile(LANGUAGES lang, string type = "MP")
         {
             //Collect Strings

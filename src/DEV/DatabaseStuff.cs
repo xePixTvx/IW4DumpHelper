@@ -88,8 +88,10 @@ namespace IW4DumpHelperWinForms.DEV
 
 
         //Add Maps to the maps table
-        public void DEV_AddMapsToMapsTable()
+        public void DEV_AddMapsToMapsTable(bool show_console_msgs = true)
         {
+            CSL.Println("Adding Maps....");
+
             //Read Maps info file
             List<string> Maps = Utils.GetLinesFromFile(Path.Combine(Environment.CurrentDirectory, "dev", "infos", "maps.txt"));
 
@@ -105,7 +107,6 @@ namespace IW4DumpHelperWinForms.DEV
             //Remove maps table if it already exists
             DB_CMD.CommandText = "DROP TABLE IF EXISTS maps";
             DB_CMD.ExecuteNonQuery();
-            CSL.Println("DEV: maps table dropped!");
 
 
             //Create Table
@@ -115,7 +116,6 @@ namespace IW4DumpHelperWinForms.DEV
             "\"HAS_ALTERNATE_RAWFILE_PATH\"     TEXT    DEFAULT 'UNKNOWN_HAS_ALT_PATH_BOOL'," +
             "\"ALTERNATE_RAWFILE_PATH\"         TEXT    DEFAULT 'UNKNOWN_ALTERNATE_RAWFILE_PATH')";
             DB_CMD.ExecuteNonQuery();
-            CSL.Println("DEV: maps table added!");
 
 
             //Add to table cmd
@@ -140,7 +140,10 @@ namespace IW4DumpHelperWinForms.DEV
                 DB_CMD.ExecuteNonQuery();
                 DB_CMD.Parameters.Clear();
 
-                CSL.Println("DEV: map " + name + " added to maps table!");
+                if (show_console_msgs)
+                {
+                    CSL.Println("DEV: map " + name + " added to maps table!");
+                }
             }
 
             //Close Database connection
@@ -151,8 +154,10 @@ namespace IW4DumpHelperWinForms.DEV
 
 
         //Add Weapon Tables for all Maps + Multiplayer
-        public void DEV_AddWeaponsToDB()
+        public void DEV_AddWeaponsToDB(bool show_console_msgs = true)
         {
+            CSL.Println("Adding Weapons....");
+
             int WeaponFileScanCount = 0;
 
             //Read Maps Info File
@@ -226,7 +231,10 @@ namespace IW4DumpHelperWinForms.DEV
                         DB_CMD.ExecuteNonQuery();
                         DB_CMD.Parameters.Clear();
 
-                        CSL.Println("DEV: Weapon --- " + info.Id + " --- added for Map --- " + name);
+                        if (show_console_msgs)
+                        {
+                            CSL.Println("DEV: Weapon --- " + info.Id + " --- added for Map --- " + name);
+                        }
                     }
 
 
@@ -278,7 +286,10 @@ namespace IW4DumpHelperWinForms.DEV
                     DB_CMD.ExecuteNonQuery();
                     DB_CMD.Parameters.Clear();
 
-                    CSL.Println("DEV: Weapon --- " + info.Id + " --- added for Multiplayer ---");
+                    if (show_console_msgs)
+                    {
+                        CSL.Println("DEV: Weapon --- " + info.Id + " --- added for Multiplayer ---");
+                    }
                 }
 
             }
@@ -293,10 +304,12 @@ namespace IW4DumpHelperWinForms.DEV
 
 
         //Add Strings Tables
-        public void DEV_AddStringTables()
+        public void DEV_AddStringTables(bool show_console_msgs = true)//LAST WORKED ON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
+            CSL.Println("Adding Strings....");
+
             //Init StringFile Scanner
-            //StringFileScanner FileScanner = new StringFileScanner(CSL, false);
+            StringFileScanner FileScanner = new StringFileScanner(CSL, false);
 
             //Open Database connection
             DB.OpenConnection();
@@ -337,31 +350,8 @@ namespace IW4DumpHelperWinForms.DEV
             DB_CMD.ExecuteNonQuery();
 
 
-            /*
-
-            //Scan StringFiles SP
-            List<DevStringInfo> StringInfos_sp_english = FileScanner.ScanStringFile(LANGUAGES.english, "SP");
-            List<DevStringInfo> StringInfos_sp_french = FileScanner.ScanStringFile(LANGUAGES.french, "SP");
-            List<DevStringInfo> StringInfos_sp_german = FileScanner.ScanStringFile(LANGUAGES.german, "SP");
-            List<DevStringInfo> StringInfos_sp_italian = FileScanner.ScanStringFile(LANGUAGES.italian, "SP");
-            List<DevStringInfo> StringInfos_sp_polish = FileScanner.ScanStringFile(LANGUAGES.polish, "SP");
-            List<DevStringInfo> StringInfos_sp_russian = FileScanner.ScanStringFile(LANGUAGES.russian, "SP");
-            List<DevStringInfo> StringInfos_sp_spanish = FileScanner.ScanStringFile(LANGUAGES.spanish, "SP");
-
-            //Scan StringFiles MP
-            List<DevStringInfo> StringInfos_mp_english = FileScanner.ScanStringFile(LANGUAGES.english, "MP");
-            List<DevStringInfo> StringInfos_mp_french = FileScanner.ScanStringFile(LANGUAGES.french, "MP");
-            List<DevStringInfo> StringInfos_mp_german = FileScanner.ScanStringFile(LANGUAGES.german, "MP");
-            List<DevStringInfo> StringInfos_mp_italian = FileScanner.ScanStringFile(LANGUAGES.italian, "MP");
-            List<DevStringInfo> StringInfos_mp_polish = FileScanner.ScanStringFile(LANGUAGES.polish, "MP");
-            List<DevStringInfo> StringInfos_mp_russian = FileScanner.ScanStringFile(LANGUAGES.russian, "MP");
-            List<DevStringInfo> StringInfos_mp_spanish = FileScanner.ScanStringFile(LANGUAGES.spanish, "MP");
-
-
-            */
-
-
-
+            List<DevCombinedStringInfo> SP_StringInfos = FileScanner.ScanStringFilesAndCombineLangs("SP");
+            List<DevCombinedStringInfo> MP_StringInfos = FileScanner.ScanStringFilesAndCombineLangs("MP");
 
 
 
